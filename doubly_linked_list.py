@@ -100,6 +100,55 @@ class DoublyLinkedList:
             newNode.next = temp_node
             temp_node.prev = newNode
             
+            
+            
+            
+            
+            
+    # delete element by given index
+    
+    def delete_by_index(self, index):
+        if index < 0 or index >= self.count_element:
+            return
+        
+        
+        
+        if index == 0:
+            self.head = self.head.next
+            self.head.prev = None
+            return
+            
+        if index == self.count_element - 1:
+            self.tail = self.tail.prev
+            self.tail.next = None
+            return
+        
+        
+        if index < self.count_element/2:
+            deleted_index = self.head
+            count_index = 0
+            
+            while count_index != index:
+                deleted_index = deleted_index.next
+                count_index += 1
+                
+            deleted_index.prev.next = deleted_index.next
+            deleted_index.next.prev = deleted_index.prev
+        else:
+            deleted_index = self.tail
+            count_index = self.count_element - 1
+            
+            while count_index != index:
+                deleted_index = deleted_index.prev
+                count_index -= 1
+                
+            deleted_index.prev.next = deleted_index.next
+            deleted_index.next.prev = deleted_index.prev
+            
+            
+                
+            
+            
     
     
     
@@ -159,9 +208,20 @@ if __name__ == "__main__":
     doubly_linked_list = DoublyLinkedList()
     doubly_linked_list.add_by_index(0,33)
     doubly_linked_list.add_by_index(1,39)
+    doubly_linked_list.append(67)
+    doubly_linked_list.append(100)
+    doubly_linked_list.append(9)
+    doubly_linked_list.append(17)
     
-    doubly_linked_list.display_forward();
+    doubly_linked_list.prepend(12)
+    
+    
+    
+    doubly_linked_list.display_forward()
+    doubly_linked_list.delete_by_index(1)
     doubly_linked_list.display_backward()
+    doubly_linked_list.display_forward()
+
     
         
    
