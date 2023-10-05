@@ -22,12 +22,12 @@ class LinkedList:
             self.head = new_node
             return
         
-        temp_node = self.head
+        curr_node = self.head
         
-        while temp_node.next is not None:
-            temp_node = temp_node.next
+        while curr_node.next != None:
+            curr_node = curr_node.next
         
-        temp_node.next = new_node
+        curr_node.next = new_node
         
     
     # add new element to the beginning
@@ -38,7 +38,7 @@ class LinkedList:
         self.head = new_node
         
         
-    # add new element on your choosen index
+    # add new element on your given index
     def add_by_index(self, value, index):
         if index < 0 or index > self.count_element:
             return
@@ -55,6 +55,7 @@ class LinkedList:
         curr_node = self.head
         while count_index+1 != index:
             curr_node = curr_node.next
+            count_index += 1
         
         new_node.next = curr_node.next
         curr_node.next = new_node
@@ -95,14 +96,14 @@ class LinkedList:
             self.head = self.head.next
             return
         
-        count_indx = 0
+        count_index = 0
         deleted_node = self.head
         prev_node = self.head
         
-        while count_indx != index:
+        while count_index != index:
             prev_node = deleted_node
             deleted_node = deleted_node.next 
-            count_indx += 1
+            count_index += 1
         
         prev_node.next = deleted_node.next
             
@@ -131,15 +132,18 @@ class LinkedList:
             
             
         
-    
+    # print the Linked List
     def print(self):
         printList = self.head
         
-        print("The Singly Linked List: ")
+        
+        
+        
+        print("The Singly Linked List: " , end="")
         while printList is not None:
-            print(printList.value)
+            print(printList.value, end="")
             if printList.next != None:
-                print(",")
+                print(" -> ", end="")
             printList = printList.next
         
 
@@ -147,19 +151,12 @@ class LinkedList:
 
 if __name__ == '__main__':
     linked_list = LinkedList()
-    linked_list.append(10)
-    linked_list.append(20)
-    linked_list.prepend(9890)
-    linked_list.append(99)
-    linked_list.append(18)
-    linked_list.append(80)
-    linked_list.prepend(300)
-    # linked_list.add_by_index(500,1)
+    linked_list.prepend(10)
+    linked_list.prepend(20)
+    linked_list.add_by_index(500,1)
+    linked_list.add_by_index(333,2)
     
-    linked_list.print()
-    print("The size is: ", linked_list.length())
-    linked_list.delete_by_value(18)
-    print("The size is: ", linked_list.length())
+    
     linked_list.print()
     
     
