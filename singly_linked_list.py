@@ -118,17 +118,21 @@ class LinkedList:
     
     # search() will return index based upon given value
     def search(self, value):
-        search_result = 0
-        curr_node = self.head
-        
-        while curr_node != value:
-            curr_node = curr_node.next
-            search_result += 1
-        
-        if curr_node == None:
+        if self.head == None:
             return -1
-        else:
-            return search_result
+        
+        
+        new_node = self.head
+        counter = 0
+        
+        while new_node != None:
+            if new_node.value == value:
+                return counter
+            else:
+                counter += 1
+                new_node = new_node.next
+        
+        
             
             
         
@@ -146,17 +150,27 @@ class LinkedList:
                 print(" -> ", end="")
             printList = printList.next
         
+        print()
+        
 
 
 
 if __name__ == '__main__':
     linked_list = LinkedList()
+    
+    
     linked_list.prepend(10)
+    
     linked_list.prepend(20)
     linked_list.add_by_index(500,1)
     linked_list.add_by_index(333,2)
     
     
+    linked_list.print()
+    
+    print(linked_list.search(10))
+    
+    linked_list.delete_by_index(1)
     linked_list.print()
     
     
