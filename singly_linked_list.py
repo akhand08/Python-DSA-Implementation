@@ -164,6 +164,7 @@ if __name__ == '__main__':
     linked_list.prepend(20)
     linked_list.add_by_index(500,1)
     linked_list.add_by_index(333,2)
+    linked_list.prepend(21)
     
     
     linked_list.print()
