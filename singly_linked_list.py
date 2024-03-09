@@ -168,11 +168,17 @@ if __name__ == '__main__':
     
     
     linked_list.print()
+    # The Singly Linked List: 21 -> 20 -> 500 -> 333 -> 10
     
     print(linked_list.search(10))
+    # Output -> 4
     
+    linked_list.add_by_index(877,1)
+    linked_list.add_by_index(3,2)
+    linked_list.prepend(21)
     linked_list.delete_by_index(1)
     linked_list.print()
+    # The Singly Linked List: 21 -> 877 -> 3 -> 20 -> 500 -> 333 -> 10
     
     
    
