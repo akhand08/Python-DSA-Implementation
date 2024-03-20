@@ -16,212 +16,39 @@ class Node:
 class DoublyLinkedList:
     def __init__(self):
         self.head = None
-        self.tail = self.head
-        self.count_element = 0
-    
-    
-    
-    # add element to the end
+        self.tail = None
+        
+        
+        
     def append(self, value):
-        newNode = Node(value)
-        self.count_element += 1
-        
-        if self.tail == None:
-            self.head = newNode  
-            self.tail = newNode
-            return
-        
-        newNode.prev = self.tail
-        self.tail.next = newNode
-        self.tail = newNode
-        
-        
-        
-        
-    
-    # add element to the beginning
-    def prepend(self, value):
-        newNode = Node(value)
-        self.count_element += 1
+        new_node = Node(value)
         
         if self.head == None:
-            self.head = newNode
-            self.tail = newNode
-            return
+            self.head = new_node
+            self.tail = new_node
         
-        newNode.next = self.head
-        self.head.prev = newNode
-        self.head = newNode
+        temp_node = self.tail
+        temp_node.next = new_node
+        self.tail = new_node
         
-        
-        
-        
-        
-        
-        
-    # add new element on your given index
-    def add_by_index(self, index, value):
-        if index < 0 or index > self.count_element:
-            return
-        
-        
-        if index == 0:
-            self.prepend(value)
-            return
-        
-        if self.count_element != 0 and index == self.count_element:
-            self.append(value)
-            return
-        
-        newNode = Node(value)
-        
-        
-        if index <= self.count_element/2:
-            count_index = 0
-            temp_node = self.head
-            
-            while count_index != index:
-                temp_node = temp_node.next
-                count_index += 1
-            
-            newNode.next = temp_node
-            newNode.prev = temp_node.prev
-            temp_node.prev = newNode
-            
-        else:
-            count_index = self.count_element - 1
-            temp_node = self.tail
-            
-            while count_index != index:
-                temp_node = temp_node.prev
-                count_index -= 1
-            
-            newNode.prev = temp_node.prev
-            newNode.next = temp_node
-            temp_node.prev = newNode
-            
-            
-            
-            
-            
-            
-    # delete element by given index
-    
-    def delete_by_index(self, index):
-        if index < 0 or index >= self.count_element:
-            return
-        
-        
-        
-        if index == 0:
-            self.head = self.head.next
-            self.head.prev = None
-            return
-            
-        if index == self.count_element - 1:
-            self.tail = self.tail.prev
-            self.tail.next = None
-            return
-        
-        
-        if index < self.count_element/2:
-            deleted_index = self.head
-            count_index = 0
-            
-            while count_index != index:
-                deleted_index = deleted_index.next
-                count_index += 1
-                
-            deleted_index.prev.next = deleted_index.next
-            deleted_index.next.prev = deleted_index.prev
-        else:
-            deleted_index = self.tail
-            count_index = self.count_element - 1
-            
-            while count_index != index:
-                deleted_index = deleted_index.prev
-                count_index -= 1
-                
-            deleted_index.prev.next = deleted_index.next
-            deleted_index.next.prev = deleted_index.prev
-            
-            
-                
-            
-            
     
     
-    
-    # print the element form beginning to end
+    # print element from beginning to ending
     def display_forward(self):
-        print_node = self.head
+        if self.head == None:
+            print("Empty Linked List")
         
-        print("The Double Linked List from Beginning to End: ")
-        while print_node != None:
-            print(print_node.value)
-            print_node = print_node.next
-            
-            
-    # print the element from End to Beginning
-    def display_backward(self):
-        print_node = self.tail
-        
-        print("The Doubly Linked List from End to Beginning: ")
-        while print_node != None:
-            print(print_node.value)
-            print_node = print_node.prev
-            
-        
-        
-        
-                
-        
-            
-    
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-                
-            
-            
-            
-            
-        
-        
-        
-        
+        curr_node = self.head
+        print("Doubly Linked List from Beginning: ", end="")
+        while curr_node != None:
+            print(curr_node.value, end="")
+            curr_node = curr_node.next
+            if curr_node != None:
+                print(" -> ", end="")
 
 
-
-
-if __name__ == "__main__":
-    doubly_linked_list = DoublyLinkedList()
-    doubly_linked_list.add_by_index(0,33)
-    doubly_linked_list.add_by_index(1,39)
-    doubly_linked_list.append(67)
-    doubly_linked_list.append(100)
-    doubly_linked_list.append(9)
-    doubly_linked_list.append(17)
-    
-    doubly_linked_list.prepend(12)
-    
-    
-    
-    doubly_linked_list.display_forward()
-    doubly_linked_list.delete_by_index(1)
-    doubly_linked_list.display_backward()
-    doubly_linked_list.display_forward()
-
-    
-        
-   
+ 
+doublyLinkedList = DoublyLinkedList()
+doublyLinkedList.append(10)
+doublyLinkedList.append(20)
+doublyLinkedList.display_forward()
