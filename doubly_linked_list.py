@@ -35,13 +35,18 @@ class DoublyLinkedList:
         self.tail.prev = temp_node
         
         
-        # print(temp_node.prev)
+    def prepend(self, value):
+        new_node = Node(value)
         
-        # print(self.head == self.tail)
+        if self.head == None:
+            self.head = new_node
+            self.tail = new_node
+            return
         
-        # temp_node.next = new_node
-        # self.tail = new_node
-        # self.tail.prev = temp_node
+        temp_node = self.head
+        self.head = new_node
+        self.head.next = temp_node
+        temp_node.prev = self.head
         
     
     
@@ -60,7 +65,7 @@ class DoublyLinkedList:
         print()
                 
     
-    
+    # print element(s) from the ending
     def display_backward(self):
         if self.tail == None:
             print("Empty Double Linked List"); 
@@ -84,6 +89,11 @@ if __name__ == "__main__":
     doublyLinkedList.append(20)
     doublyLinkedList.append(999)
     doublyLinkedList.append(721)
+    
+    
+    doublyLinkedList.prepend(45)
+    doublyLinkedList.prepend(808)
+    doublyLinkedList.prepend(100)
     
     doublyLinkedList.display_forward()
     doublyLinkedList.display_backward()
