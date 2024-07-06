@@ -17,11 +17,13 @@ class DoublyLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
+        self.length = 0
         
         
         
     def append(self, value):
         new_node = Node(value)
+        self.length += 1
         
         if self.head == None:
             self.head = new_node
@@ -37,6 +39,7 @@ class DoublyLinkedList:
         
     def prepend(self, value):
         new_node = Node(value)
+        self.length += 1
         
         if self.head == None:
             self.head = new_node
@@ -47,6 +50,51 @@ class DoublyLinkedList:
         self.head = new_node
         self.head.next = temp_node
         temp_node.prev = self.head
+    
+    
+    # Add element to the doubly linked list by index
+    def add_by_index(self, index, value):
+        if self.length < index or index  < 0:
+            return
+        
+        if index == self.length:
+            self.append(value)
+            return
+        if index == 0: 
+            self.prepend(value)
+            return
+           
+        new_node = Node(value)
+        if index <= (self.length//2):
+            counter = 0
+            temp_node = self.head
+            while counter < index - 1:
+                temp_node = temp_node.next
+                counter += 1
+            new_node.next = temp_node.next
+            temp_node.next.prev = new_node
+            temp_node.next = new_node
+            new_node.prev = temp_node
+                
+        else:
+            counter = self.length - 1
+            temp_node = self.tail
+            while counter > index:
+                temp_node = temp_node.prev
+                counter -= 1
+            
+            new_node.prev = temp_node.prev
+            temp_node.prev.next = new_node
+            new_node.next = temp_node
+            temp_node.prev = new_node
+            
+        self.length += 1
+            
+        
+        
+        
+    
+    
         
     
     
@@ -55,6 +103,7 @@ class DoublyLinkedList:
         if self.head == None:
             print("Empty Doubly Linked List")
         
+        print("The size of the Doubly Linked List: ", self.length)
         curr_node = self.head
         print("Doubly Linked List from Beginning: ", end="")
         while curr_node != None:
@@ -63,13 +112,15 @@ class DoublyLinkedList:
             if curr_node != None:
                 print(" -> ", end="")
         print()
+        
                 
     
     # print element(s) from the ending
     def display_backward(self):
         if self.tail == None:
             print("Empty Double Linked List"); 
-            
+        
+        print("The size of the Doubly Linked List: ", self.length)    
         curr_node = self.tail 
         print("Doubly Linked List from Ending: ", end="")
         while curr_node != None:
@@ -79,6 +130,7 @@ class DoublyLinkedList:
             if curr_node != None:
                 print(" -> ", end="")
         print()
+        
         
 
 
@@ -94,8 +146,19 @@ if __name__ == "__main__":
     doublyLinkedList.prepend(45)
     doublyLinkedList.prepend(808)
     doublyLinkedList.prepend(100)
+    doublyLinkedList.append(88)
     
     doublyLinkedList.display_forward()
     doublyLinkedList.display_backward()
+    
+    doublyLinkedList.add_by_index(0, 5000)
+    doublyLinkedList.add_by_index(9, 5000)
+    doublyLinkedList.add_by_index(7, 5000)
+    
+    
+    doublyLinkedList.display_forward()
+    doublyLinkedList.display_backward()
+    
+    
     
     
