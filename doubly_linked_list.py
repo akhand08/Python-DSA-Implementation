@@ -89,6 +89,43 @@ class DoublyLinkedList:
             temp_node.prev = new_node
             
         self.length += 1
+        
+        
+    # delete the value based on the given index
+    def delete_by_index(self, index):
+        if index < 0 or index >= self.length :
+            return
+        
+    
+        if index == 0:
+            temp_node = self.head
+            self.head = temp_node.next
+            self.head.prev = None
+            self.length -= 1
+            return
+            
+        if index == self.length - 1:
+            temp_node = self.tail
+            self.tail = temp_node.prev
+            self.tail.next = None
+            self.length -= 1
+            return
+        
+        counter = 0
+        temp_node = self.head
+        while counter <= index:
+            temp_node = temp_node.next
+            counter += 1
+        
+        temp_node.prev.next = temp_node.next
+        temp_node.next.prev = temp_node.prev
+        temp_node -= 1
+        return
+            
+            
+        
+        
+         
             
         
         
@@ -155,6 +192,11 @@ if __name__ == "__main__":
     doublyLinkedList.add_by_index(9, 5000)
     doublyLinkedList.add_by_index(7, 5000)
     
+    
+    doublyLinkedList.display_forward()
+    doublyLinkedList.display_backward()
+    
+    doublyLinkedList.delete_by_index(0)
     
     doublyLinkedList.display_forward()
     doublyLinkedList.display_backward()
